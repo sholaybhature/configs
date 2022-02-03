@@ -1,10 +1,10 @@
 syntax on
 set number
-colorscheme atlas
 let &t_SI = "\<esc>[5 q" " blinking vertical bar for insert mode
 let &t_EI = "\<esc>[4 q" " solid underscore for normal mode
 let &t_SR = "\<esc>[3 q" " blinking underscore for replace mode
 
+set background=dark
 set shiftwidth=2 " shift width to 2 spaces
 set tabstop=2 " tab width to 2 spaces
 set expandtab " space instead of tabs
@@ -31,9 +31,16 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'danishprakash/vim-yami'
 call plug#end()
 
-source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.vim/coc-config/coc.vim
+if (has("termguicolors"))
+  set termguicolors
+endif
+colorscheme yami
+" clear highlight
+nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
 " copy paste
 nnoremap <C-y> "+y
@@ -70,6 +77,10 @@ let g:go_jump_to_error = 0
 
 " run go imports on file save
 let g:go_fmt_command = "goimports"
+
+if (&term =~ '^xterm' && &t_Co == 256)
+  set t_ut= | set ttyscroll=1
+endif
 
 " automatically highlight variable your cursor is on
 let g:go_auto_sameids = 0
