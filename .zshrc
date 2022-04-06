@@ -10,13 +10,14 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -77,12 +78,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bgnotify zsh-autosuggestions copydir copyfile dirhistory jsontools)
-alias cwd="cd ~/Projects/ripchess/src/"
-alias nvimrc="nvim ~/.config/nvim/init.vim"
-alias pf="nvim $(ls -1t | head -1)"
-alias gitpw="nvim ~/Documents/shhh.txt"
+plugins=(git bgnotify zsh-autosuggestions copypath copyfile dirhistory jsontools)
+alias cwd="cd ~/Projects/eShop/"
+alias cc="cd ~/Gamezop/"
+alias vimrc="vim ~/.vimrc"
+alias gitpw="vim ~/Documents/shhh.txt"
 
+alias ssh="env TERM=xterm-256color ssh"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -113,3 +115,4 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
